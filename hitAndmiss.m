@@ -1,10 +1,11 @@
-function result = hitAndmiss(foreground, aiBoard, userBoard)
+function foreground = hitAndmiss(foreground, aiBoard, userBoard)
     % use randi to choose the order of fire
     % if order is 0, ai starts first
     % otherwise user starts first
     code = spriteCode();
     scene = simpleGameEngine('Battleship.png',84,84);
-    drawScene(my_scene, foreground_board, background_board);
+    background = [code.water_sprite * ones(10,11),userBoard];
+    drawScene(scene, background, foreground);
     allDefeated = false;
     while ~allDefeated
         order = randi([0 1]);
@@ -18,15 +19,15 @@ function result = hitAndmiss(foreground, aiBoard, userBoard)
                     drawScene(scene, background, foreground);
                     if defeated(foreground, aiBoard, 'ai')
                         allDefeated = true;
-                        result = '\nUser WIN\n';
+                        result = 'User WIN\n';
                     end
                 else
                     allDefeated = true;
-                    result = '\nAI WIN\n';
+                    result = 'AI WIN\n';
                 end
             else
                 allDefeated = true;
-                result = '\nUser WIN\n';
+                result = 'User WIN\n';
             end
         else
             if ~defeated(foreground, userBoard, 'user')
@@ -38,18 +39,20 @@ function result = hitAndmiss(foreground, aiBoard, userBoard)
                     background(:,12:21) = userBoard;
                     drawScene(scene, background, foreground);  
                     if defeated(foreground, userBoard, 'user')
-                        result = '\nAI WIN\n';
+                        result = 'AI WIN\n';
                         allDefeated = true;
                     end
                 else
-                    result = '\nUser WIN\n';
+                    result = 'User WIN\n';
                     allDefeated = true;
                 end
             else
-                result = '\nAI WIN\n';
+                result = 'AI WIN\n';
                 allDefeated = true;
             end
         end
     end
+    fprintf(result);
+    close(figure(1));
 end
 

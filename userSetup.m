@@ -11,6 +11,7 @@ function [ user_ships ] = userSetup()
     ship_length = [];
     ship_direction = [];
     ship_coordinates = [];
+    scene = simpleGameEngine('Battleship.png',84,84);
     for ship_id = 1 : ship_numbers
         ship_direction(ship_id,:) =...
             input_direction('\nInput the direction(vertical/horizontal) of the placement of %i ship:(input ver/hor) ', ship_id);
@@ -19,7 +20,8 @@ function [ user_ships ] = userSetup()
         ship_coordinates(ship_id,:) =...
             input_shipcoordinates('\nInput the coordinate([x,y], each is from 1 to 10) of the placement of %i ship: ', ship_id, ship_length(ship_id), ship_direction(ship_id,:), user_ships);
         user_ships =...
-            place_ship(ship_coordinates(ship_id,1), ship_coordinates(ship_id,2), ship_length(ship_id), ship_direction(ship_id,:), user_ships); 
+            place_ship(ship_coordinates(ship_id,1), ship_coordinates(ship_id,2), ship_length(ship_id), ship_direction(ship_id,:), user_ships);
+        drawScene(scene,user_ships);
     end
-
+    close(figure(1));
 end
