@@ -1,9 +1,11 @@
 function [coordinate] = input_shipcoordinates(prompt, index, length, direction, user_ships)
     code = spriteCode();
+    close(figure(1));
     fprintf(prompt,index);
-    [coordinate] = input('');
-    row = coordinate(end,1);
-    col = coordinate(end,2);
+    scene = simpleGameEngine('Battleship.png',84,84);
+    drawScene(scene,user_ships);
+    [row,col] = getMouseInput(scene);
+    [coordinate] = [row,col];
     direction = char(direction);
     check = false;
     while ~check
@@ -14,31 +16,29 @@ function [coordinate] = input_shipcoordinates(prompt, index, length, direction, 
                 (strcmp(direction, 'hor') && col + length - 1 > 10) ||...
                 (strcmp(direction, 'ver') && row + length - 1 > 10)
             fprintf(prompt,index);    
-            [coordinate] = input('');
-            row = coordinate(end,1);
-            col = coordinate(end,2);
+            [row,col] = getMouseInput(scene);
+            [coordinate] = [row,col];
         end
         % check the condition whether two ships are crossed
         if strcmp(direction, 'hor')
             % if the ship are placed horizontally, check the space of row
             while sum(user_ships(row,col:min(10,col+length-1))) ~= code.water_sprite * length
                 fprintf(prompt,index);    
-                [coordinate] = input('');
-                row = coordinate(end,1);
-                col = coordinate(end,2);
+                [row,col] = getMouseInput(scene);
+                [coordinate] = [row,col];
             end
         else
             % if the ship are placed vertically, check the space of column
             while sum(user_ships(row:min(10, row+length-1),col)) ~= code.water_sprite * length
                 fprintf(prompt,index);    
-                [coordinate] = input('');
-                row = coordinate(end,1);
-                col = coordinate(end,2);
+                [row,col] = getMouseInput(scene);
+                [coordinate] = [row,col];
             end
         end
         % at last, ship won't be out of the board and it won't cross with
         % another boat, set check(flag) to be true to end the loop
         % the boat is placed on the water
         check = true;
-    end 
+    end
+    close(figure(1));
 end

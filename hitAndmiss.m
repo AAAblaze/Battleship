@@ -15,23 +15,23 @@ function foreground = hitAndmiss(foreground, aiBoard, userBoard)
                 background = [code.water_sprite * ones(10,11), userBoard];
                 drawScene(scene, background, foreground);
                 if ~defeated(foreground, userBoard, 'user')
-                    foreground = userFire(foreground, aiBoard);
+                    foreground = userFire(foreground, aiBoard, userBoard);
                     drawScene(scene, background, foreground);
                     if defeated(foreground, aiBoard, 'ai')
                         allDefeated = true;
-                        result = 'User WIN\n';
+                        result = '\nUser WIN\n';
                     end
                 else
                     allDefeated = true;
-                    result = 'AI WIN\n';
+                    result = '\nAI WIN\n';
                 end
             else
                 allDefeated = true;
-                result = 'User WIN\n';
+                result = '\nUser WIN\n';
             end
         else
             if ~defeated(foreground, userBoard, 'user')
-                foreground = userFire(foreground, aiBoard);
+                foreground = userFire(foreground, aiBoard, userBoard);
                 background = [code.water_sprite * ones(10,11), userBoard];
                 drawScene(scene, background, foreground);
                 if ~defeated(foreground, aiBoard, 'ai')
@@ -39,15 +39,15 @@ function foreground = hitAndmiss(foreground, aiBoard, userBoard)
                     background(:,12:21) = userBoard;
                     drawScene(scene, background, foreground);  
                     if defeated(foreground, userBoard, 'user')
-                        result = 'AI WIN\n';
+                        result = '\nAI WIN\n';
                         allDefeated = true;
                     end
                 else
-                    result = 'User WIN\n';
+                    result = '\nUser WIN\n';
                     allDefeated = true;
                 end
             else
-                result = 'AI WIN\n';
+                result = '\nAI WIN\n';
                 allDefeated = true;
             end
         end

@@ -1,14 +1,9 @@
-function [foreground] = userFire(foreground, aiBoard, userBoard)
+function [foreground] = userFire(foreground, aiBoard)
     code = spriteCode();
-    close(figure(1));
-    fprintf('\nYour turn to fire');
+    fprintf('Your turn to fire');
     scene = simpleGameEngine('Battleship.png',84,84);
-    background = [code.water_sprite * ones(10,11), userBoard];
-    drawScene(scene,background, foreground);
+    drawScene(scene,user_ships);
     [row,col] = getMouseInput(scene);
-    while(row > 10 || col > 10)
-        [row,col] = getMouseInput(scene);
-    end
     % hit
     if (aiBoard(row, col) > code.water_sprite && foreground(row, col) == code.blank_sprite)...
             || foreground(row, col) == code.hit_sprite
@@ -16,7 +11,6 @@ function [foreground] = userFire(foreground, aiBoard, userBoard)
     % miss
     else
         foreground(row, col) = code.miss_sprite;
-    end
-    close(figure(1));
+    end      
 end
 
