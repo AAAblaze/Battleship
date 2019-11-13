@@ -2,9 +2,10 @@ function [ user_ships ] = userSetup()
     code = spriteCode();
     % the "board" of ships is initially empty: 10 by 10 of two
     user_ships = code.water_sprite * ones(10,10);
-
+    
     ship_numbers = 5;
-
+    fprintf('You are going to place your ships in your sea.\n');
+    fprintf('The length of ships are 5, 4, 3, 3, 2.\n');
     % length of the ships, ship 1 is the carrier and has length 5, 
     % ship 2 is the battleship, ship 3 is the submarine, ship 4 is the cruiser,
     % and ship 5 is the PT boat
@@ -16,12 +17,17 @@ function [ user_ships ] = userSetup()
     for ship_id = 1 : ship_numbers
         correctPlaced = false;
         while ~correctPlaced
+            fprintf('Please click the sprite to choose the start point to place the ship.\n'); 
             [row_begin,col_begin] = getMouseInput(scene);
+            fprintf('Please click the sprite to choose the end point to place the ship.\n');
             [row_end,col_end] = getMouseInput(scene);
             % not place in row or in column or choose same place twice
             while((row_begin - row_end ~= 0) && (col_begin - col_end ~= 0)) ||...
                     ((row_begin - row_end) == 0 && (col_begin - col_end) == 0)
+                fprintf('You could not place the ship crossing sprites or click same place twice.\n');
+                fprintf('Please click the sprite to choose the start point to place the ship.\n'); 
                 [row_begin,col_begin] = getMouseInput(scene);
+                fprintf('Please click the sprite to choose the end point to place the ship.\n');
                 [row_end,col_end] = getMouseInput(scene);
             end
             %same row or column
@@ -44,6 +50,7 @@ function [ user_ships ] = userSetup()
                 for currCol = col_begin : col_end
                     if user_ships(row_begin, currCol) > 2
                         isCrashed = true;
+                        fprintf('You could not put ship in cross.\n'); 
                         break;
                     end
                 end
@@ -60,6 +67,9 @@ function [ user_ships ] = userSetup()
                         if existLength == 0 || size(ship_length,2) == 0
                             ship_length(ship_id) = col_end - col_begin + 1;
                             correctPlaced = true;
+                        else
+                            improperLength = col_end - col_begin + 1;
+                            fprintf('You could not put %i sprites ship again.\n', improperLength); 
                         end
                     %Two three options    
                     else
@@ -74,6 +84,9 @@ function [ user_ships ] = userSetup()
                             if twoThrees < 2
                                 ship_length(ship_id) = 3;
                                 correctPlaced = true;
+                            else
+                                improperLength = col_end - col_begin + 1;
+                                fprintf('You could not put %i sprites ship moere than twice.\n', improperLength); 
                             end
                         end
                     end                 
@@ -103,6 +116,9 @@ function [ user_ships ] = userSetup()
                         if existLength == 0 || size(ship_length,2) == 0
                             ship_length(ship_id) = row_end - row_begin + 1;
                             correctPlaced = true;
+                        else
+                            improperLength = row_end - row_begin + 1;
+                            fprintf('You could not put %i sprites ship again.\n', improperLength); 
                         end
                     %Two three options    
                     else
@@ -117,6 +133,9 @@ function [ user_ships ] = userSetup()
                             if twoThrees < 2
                                 ship_length(ship_id) = 3;
                                 correctPlaced = true;
+                            else
+                                improperLength = row_end - row_begin + 1;
+                                fprintf('You could not put %i sprites ship moere than twice.\n', improperLength); 
                             end
                         end
                     end                 
@@ -124,6 +143,8 @@ function [ user_ships ] = userSetup()
                         ship_direction(ship_id,:) = 'ver';
                     end
                 end
+            else
+                fprintf('The length of ship is not proper.\n');
             end
             if correctPlaced
                 ship_coordinates(ship_id,:) = [row_begin, col_begin];

@@ -1,4 +1,6 @@
 function foreground = hitAndmiss(foreground, aiBoard, userBoard)
+    clc;
+    fprintf('The war start!');
     % use randi to choose the order of fire
     % if order is 0, ai starts first
     % otherwise user starts first
