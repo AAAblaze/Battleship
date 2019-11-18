@@ -15,7 +15,7 @@ function foreground = smartHitAndmiss(foreground, aiBoard, userBoard)
         if order == 0
             if ~defeated(foreground, aiBoard, 'ai')
                 informationMatrix = smartHit(foreground, userBoard, informationMatrix);
-                coordinate = [informationMatrix(1,1), informationMatrix(1,2)]
+                coordinate = [informationMatrix(1,1), informationMatrix(1,2)];
                 foreground = smartAIFire(foreground, userBoard, coordinate);
                 background = [code.water_sprite * ones(10,11), userBoard];
                 drawScene(scene, background, foreground);
@@ -41,7 +41,7 @@ function foreground = smartHitAndmiss(foreground, aiBoard, userBoard)
                 drawScene(scene, background, foreground);
                 if ~defeated(foreground, aiBoard, 'ai')
                     informationMatrix = smartHit(foreground, userBoard, informationMatrix);
-                    coordinate = [informationMatrix(1,1), informationMatrix(1,2)]
+                    coordinate = [informationMatrix(1,1), informationMatrix(1,2)];
                     foreground = smartAIFire(foreground, userBoard, coordinate);
                     drawScene(scene, background, foreground);  
                     if defeated(foreground, userBoard, 'user')

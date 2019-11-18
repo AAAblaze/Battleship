@@ -1,17 +1,13 @@
 <deployment-project plugin="plugin.apptool" plugin-version="1.0">
-  <configuration build-checksum="3865898105" file="/Volumes/KINGSTON/Battleship/Battleship.prj" location="/Volumes/KINGSTON/Battleship" name="Battleship" target="target.mlapps" target-name="打包为 App">
-    <param.appname>Battleship</param.appname>
+  <configuration build-checksum="190802148" file="/Volumes/KINGSTON/Battleship/battleShip.prj" location="/Volumes/KINGSTON/Battleship" name="battleShip" target="target.mlapps" target-name="打包为 App">
+    <param.appname>battleShip</param.appname>
     <param.authnamewatermark>Kangxuan Ye</param.authnamewatermark>
     <param.email />
     <param.company />
-    <param.icon>${PROJECT_ROOT}/Battleship_resources/icon_24.png</param.icon>
-    <param.icons>
-      <file>${PROJECT_ROOT}/Battleship_resources/icon_48.png</file>
-      <file>${PROJECT_ROOT}/Battleship_resources/icon_24.png</file>
-      <file>${PROJECT_ROOT}/Battleship_resources/icon_16.png</file>
-    </param.icons>
-    <param.summary>Game</param.summary>
-    <param.description>Test Game</param.description>
+    <param.icon />
+    <param.icons />
+    <param.summary />
+    <param.description />
     <param.screenshot />
     <param.version>1.0</param.version>
     <param.products.name />
@@ -19,10 +15,14 @@
     <param.products.version />
     <param.platforms />
     <param.output>${PROJECT_ROOT}</param.output>
-    <param.guid>26637011-d2d6-46bf-8584-5e4bf928537f</param.guid>
+    <param.guid>db43233f-3f48-468d-be4a-411e6b66b878</param.guid>
     <unset>
       <param.email />
       <param.company />
+      <param.icon />
+      <param.icons />
+      <param.summary />
+      <param.description />
       <param.screenshot />
       <param.version />
       <param.products.name />
@@ -34,10 +34,24 @@
     <fileset.main>
       <file>${PROJECT_ROOT}/main.m</file>
     </fileset.main>
-    <fileset.depfun />
-    <fileset.resources>
-      <file>${PROJECT_ROOT}</file>
-    </fileset.resources>
+    <fileset.depfun>
+      <file>${PROJECT_ROOT}/PorN.m</file>
+      <file>${PROJECT_ROOT}/aiFire.m</file>
+      <file>${PROJECT_ROOT}/aiSetup.m</file>
+      <file>${PROJECT_ROOT}/defeated.m</file>
+      <file>${PROJECT_ROOT}/hitAndmiss.m</file>
+      <file>${PROJECT_ROOT}/isContained.m</file>
+      <file>${PROJECT_ROOT}/place_ship.m</file>
+      <file>${PROJECT_ROOT}/possibleDirection.m</file>
+      <file>${PROJECT_ROOT}/simpleGameEngine.m</file>
+      <file>${PROJECT_ROOT}/smartAIFire.m</file>
+      <file>${PROJECT_ROOT}/smartHit.m</file>
+      <file>${PROJECT_ROOT}/smartHitAndmiss.m</file>
+      <file>${PROJECT_ROOT}/spriteCode.m</file>
+      <file>${PROJECT_ROOT}/userFire.m</file>
+      <file>${PROJECT_ROOT}/userSetup.m</file>
+    </fileset.depfun>
+    <fileset.resources />
     <fileset.package />
     <build-deliverables>
       <file location="/Volumes/KINGSTON" name="Battleship" optional="false">/Volumes/KINGSTON/Battleship</file>
