@@ -12,6 +12,7 @@ function [ user_ships ] = userSetup()
     ship_length = [];
     ship_direction = [];
     ship_coordinates = [];
+    close(figure(1));
     scene = simpleGameEngine('Battleship.png',84,84);
     drawScene(scene, user_ships);
     for ship_id = 1 : ship_numbers
@@ -75,6 +76,7 @@ function [ user_ships ] = userSetup()
                     else
                         if(size(ship_length,2) < 2)
                             ship_length(ship_id) = 3;
+                            correctPlaced = true;
                         else
                             for index = 1 : size(ship_length,2)
                                 if(ship_length(index) == (col_end - col_begin + 1))
@@ -124,6 +126,7 @@ function [ user_ships ] = userSetup()
                     else
                         if(size(ship_length,2) < 2)
                             ship_length(ship_id) = 3;
+                            correctPlaced = true;
                         else
                             for index = 1 : size(ship_length,2)
                                 if(ship_length(index) == (row_end - row_begin + 1))

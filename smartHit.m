@@ -6,7 +6,6 @@ function informationMatrix = smartHit(foreground, userBoard, informationMatrix)
     %   2 : left
     %   -2  : right
     code = spriteCode();
-    fprintf('\nmatrix before:\n');
     dir = informationMatrix(1,3);
     step = informationMatrix(2,3);
     if dir == 0
@@ -20,10 +19,10 @@ function informationMatrix = smartHit(foreground, userBoard, informationMatrix)
         if (userBoard(row, col) > code.water_sprite && foreground(row, 11 + col) == code.blank_sprite)   
             possibleDir = possibleDirection(row, col, foreground);
             dirIndex = randi([1 size(possibleDir,2)]);
-            dir = possibleDir(dirIndex)
+            dir = possibleDir(dirIndex);
             step = 1;
         end
-        informationMatrix = [[row, col, dir];[row, col, step]]
+        informationMatrix = [[row, col, dir];[row, col, step]];
     elseif dir == 2 || dir == -2
         nextRow = informationMatrix(2,1);
         if dir == 2
@@ -40,13 +39,13 @@ function informationMatrix = smartHit(foreground, userBoard, informationMatrix)
             step = 1;
             lockedRow = informationMatrix(2,1);
             lockedCol = informationMatrix(2,2);
-            possibleDir = possibleDirection(lockedRow, lockedCol, foreground)
+            possibleDir = possibleDirection(lockedRow, lockedCol, foreground);
             if(isContained(possibleDir, -1 * dir) &&...
                     foreground(lockedRow, lockedCol) == foreground(nextRow, nextCol + 11))
                 dir = -1 * dir;
-                nextCol = lockedCol + PorN(dir);
+                nextCol = min(max(1, lockedCol + PorN(dir)), 10);
                 step = 1;
-            elseif size(possibleDir,2) > 0
+            elseif size(possibleDir,2) > 0 && step == 1
                 dirIndex = randi([1 size(possibleDir,2)]);
                 dir = possibleDir(dirIndex);
             else
@@ -81,11 +80,11 @@ function informationMatrix = smartHit(foreground, userBoard, informationMatrix)
             step = 1;
             lockedRow = informationMatrix(2,1);
             lockedCol = informationMatrix(2,2);
-            possibleDir = possibleDirection(lockedRow, lockedCol, foreground)
+            possibleDir = possibleDirection(lockedRow, lockedCol, foreground);
             if(isContained(possibleDir, -1 * dir) &&...
                     foreground(lockedRow, lockedCol) == foreground(nextRow, nextCol + 11))
                 dir = -1 * dir;
-                nextRow = lockedRow + PorN(dir);
+                nextRow = min(max(1,lockedRow + PorN(dir)), 10);
                 step = 1;
             elseif size(possibleDir,2) > 0
                 dirIndex = randi([1 size(possibleDir,2)]);
@@ -107,7 +106,5 @@ function informationMatrix = smartHit(foreground, userBoard, informationMatrix)
         informationMatrix(1,1) = nextRow;
         informationMatrix(1,2) = nextCol;
     end
-    fprintf('\nmatrix after:\n');
-    informationMatrix
 end
 
