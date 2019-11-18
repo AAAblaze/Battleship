@@ -1,5 +1,8 @@
 clear;
 clc;
 a = [];
-b = size(a,2)
-
+for i = -1 : 2 : 1
+    i
+    a(end + 1) = i +3;
+end
+a

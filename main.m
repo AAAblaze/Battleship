@@ -15,7 +15,7 @@ function main()
     userBoard = userSetup();
     background_board = [aiBoard,code.water_sprite * ones(10,1), userBoard];
     foreground_board = code.blank_sprite * ones(10,21);
-    foreground_board = hitAndmiss(foreground_board, aiBoard, userBoard);
+    foreground_board = smartHitAndmiss(foreground_board, aiBoard, userBoard);
     drawScene(my_scene, background_board, foreground_board);
     fprintf("Game End");
 end
