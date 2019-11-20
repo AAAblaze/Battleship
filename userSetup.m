@@ -16,6 +16,7 @@ function [ user_ships ] = userSetup()
     scene = simpleGameEngine('Battleship.png',84,84);
     drawScene(scene, user_ships);
     for ship_id = 1 : ship_numbers
+        clc;
         correctPlaced = false;
         while ~correctPlaced
             fprintf('Please click the sprite to choose the start point to place the ship.\n'); 
@@ -25,12 +26,14 @@ function [ user_ships ] = userSetup()
             % not place in row or in column or choose same place twice
             while((row_begin - row_end ~= 0) && (col_begin - col_end ~= 0)) ||...
                     ((row_begin - row_end) == 0 && (col_begin - col_end) == 0)
+                clc;
                 fprintf('You could not place the ship crossing sprites or click same place twice.\n');
                 fprintf('Please click the sprite to choose the start point to place the ship.\n'); 
                 [row_begin,col_begin] = getMouseInput(scene);
                 fprintf('Please click the sprite to choose the end point to place the ship.\n');
                 [row_end,col_end] = getMouseInput(scene);
             end
+            clc;
             %same row or column
             if(row_begin == row_end && col_begin > col_end)
                 col_tmp = col_end;
@@ -156,6 +159,7 @@ function [ user_ships ] = userSetup()
         user_ships =...
             place_ship(ship_coordinates(ship_id,1), ship_coordinates(ship_id,2), ship_length(ship_id), ship_direction(ship_id,:), user_ships);
         close(figure(1));
+        fprintf('The %i ship has been successfully placed.', ship_id);
         drawScene(scene,user_ships);
     end
     close(figure(1));
