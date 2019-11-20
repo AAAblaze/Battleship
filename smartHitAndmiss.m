@@ -6,6 +6,7 @@ function foreground = smartHitAndmiss(foreground, aiBoard, userBoard)
     % if order is 0, ai starts first
     % otherwise user starts first
     code = spriteCode();
+    winSound = audioread('win.wav');
     scene = simpleGameEngine('Battleship.png',84,84);
     background = [code.water_sprite * ones(10,11),userBoard];
     drawScene(scene, background, foreground);
@@ -25,6 +26,7 @@ function foreground = smartHitAndmiss(foreground, aiBoard, userBoard)
                     if defeated(foreground, aiBoard, 'ai')
                         allDefeated = true;
                         result = '\nUser WIN\n';
+                        sound(winSound);
                     end
                 else
                     allDefeated = true;
@@ -33,6 +35,7 @@ function foreground = smartHitAndmiss(foreground, aiBoard, userBoard)
             else
                 allDefeated = true;
                 result = '\nUser WIN\n';
+                sound(winSound);
             end
         else
             if ~defeated(foreground, userBoard, 'user')
@@ -50,6 +53,7 @@ function foreground = smartHitAndmiss(foreground, aiBoard, userBoard)
                     end
                 else
                     result = '\nUser WIN\n';
+                    sound(winSound);
                     allDefeated = true;
                 end
             else

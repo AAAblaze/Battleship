@@ -1,7 +1,8 @@
 function [foreground] = userFire(foreground, aiBoard, userBoard)
     code = spriteCode();
     close(figure(1));
-    fprintf('\nYour turn to fire');
+    clc;
+    fprintf('Your turn to fire');
     scene = simpleGameEngine('Battleship.png',84,84);
     background = [code.water_sprite * ones(10,11), userBoard];
     drawScene(scene,background, foreground);
@@ -13,6 +14,7 @@ function [foreground] = userFire(foreground, aiBoard, userBoard)
     if (aiBoard(row, col) > code.water_sprite && foreground(row, col) == code.blank_sprite)...
             || foreground(row, col) == code.hit_sprite
         foreground(row, col) = code.hit_sprite;
+        hitSound();
     % miss
     else
         foreground(row, col) = code.miss_sprite;

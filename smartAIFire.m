@@ -6,6 +6,7 @@ function [foreground] = smartAIFire(foreground, userBoard, coordinate)
     if (userBoard(row, col) > code.water_sprite && foreground(row, 11 + col) == code.blank_sprite)...
             || foreground(row, 11 + col) == code.hit_sprite
         foreground(row, 11 + col) = code.hit_sprite;
+        hitSound();
     % miss
     else
         foreground(row, 11 + col) = code.miss_sprite;

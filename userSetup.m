@@ -88,7 +88,7 @@ function [ user_ships ] = userSetup()
                                 correctPlaced = true;
                             else
                                 improperLength = col_end - col_begin + 1;
-                                fprintf('You could not put %i sprites ship moere than twice.\n', improperLength); 
+                                fprintf('You could not put %i sprites ship more than twice.\n', improperLength); 
                             end
                         end
                     end                 
@@ -138,7 +138,7 @@ function [ user_ships ] = userSetup()
                                 correctPlaced = true;
                             else
                                 improperLength = row_end - row_begin + 1;
-                                fprintf('You could not put %i sprites ship moere than twice.\n', improperLength); 
+                                fprintf('You could not put %i sprites ship more than twice.\n', improperLength); 
                             end
                         end
                     end                 

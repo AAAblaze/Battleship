@@ -49,8 +49,9 @@ function main()
             if decision ~= 'y'
                 repeat = false;
             end
+            clear sound;
         end
-        fprintf("Game End");
+        fprintf("Game End\n");
     end
     fprintf('Program quits');
 end

@@ -1,8 +1,6 @@
 clear;
 clc;
-a = [];
-for i = -1 : 2 : 1
-    i
-    a(end + 1) = i +3;
-end
-a
+Sound = audioread('cheer-03.wav');
+sound(Sound);
+    %pause(1);
+    %clear sound;

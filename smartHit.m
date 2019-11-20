@@ -40,6 +40,12 @@ function informationMatrix = smartHit(foreground, userBoard, informationMatrix)
             lockedRow = informationMatrix(2,1);
             lockedCol = informationMatrix(2,2);
             possibleDir = possibleDirection(lockedRow, lockedCol, foreground);
+            if dir == 2 || dir == -2
+                nextRow = min(max(1,nextRow), 10);
+            end
+            if nextCol == 11 || nextCol == 0
+                nextCol = min(max(1,nextRow), 10);
+            end
             if(isContained(possibleDir, -1 * dir) &&...
                     foreground(lockedRow, lockedCol) == foreground(nextRow, nextCol + 11))
                 dir = -1 * dir;
@@ -81,6 +87,12 @@ function informationMatrix = smartHit(foreground, userBoard, informationMatrix)
             lockedRow = informationMatrix(2,1);
             lockedCol = informationMatrix(2,2);
             possibleDir = possibleDirection(lockedRow, lockedCol, foreground);
+            if nextRow == 0 || nextRow == 11
+                nextRow = min(max(1,nextRow), 10);
+            end
+            if dir == 1 || dir == -1
+                nextCol = min(max(1,nextRow), 10);
+            end
             if(isContained(possibleDir, -1 * dir) &&...
                     foreground(lockedRow, lockedCol) == foreground(nextRow, nextCol + 11))
                 dir = -1 * dir;
