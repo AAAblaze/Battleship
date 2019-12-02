@@ -1,5 +1,6 @@
 function [foreground] = smartAIFire(foreground, userBoard, coordinate)
     code = spriteCode();
+    % get the coordinate and separate it to row and column variabless
     row = coordinate(1,1);
     col = coordinate(1,2);
     % hit

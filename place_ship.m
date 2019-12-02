@@ -1,6 +1,8 @@
 function board = place_ship(row, col, length, direction, board)
     code = spriteCode();
     direction = char(direction);
+    % place ship according to the direction
+    % using sprite to update the background
     if strcmp(direction, 'hor') == true
         for currCol = col : col + length - 1
             if currCol == col

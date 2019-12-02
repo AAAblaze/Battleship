@@ -6,7 +6,9 @@ function [foreground] = userFire(foreground, aiBoard, userBoard)
     scene = simpleGameEngine('Battleship.png',84,84);
     background = [code.water_sprite * ones(10,11), userBoard];
     drawScene(scene,background, foreground);
+    % capture the coordinate of the mouse
     [row,col] = getMouseInput(scene);
+    % could not hit user himself or herself
     while(row > 10 || col > 10)
         [row,col] = getMouseInput(scene);
     end

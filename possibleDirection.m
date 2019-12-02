@@ -7,6 +7,9 @@ function possibleDir = possibleDirection(row, col, foreground)
     %   -2  : right
     code = spriteCode();
     possibleDir = [];
+    % find possible direction
+    % cannot out of boundary and should be a blank sprite
+    % which means it has a chance to hit there
     for i = -1 : 2 : 1
         if ((col + i < 11) && (col + i > 0) && (foreground(row, col + 11 + i) == code.blank_sprite))
             possibleDir(end + 1) = i * (-2);

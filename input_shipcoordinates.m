@@ -4,6 +4,7 @@ function [coordinate] = input_shipcoordinates(prompt, index, length, direction, 
     fprintf(prompt,index);
     scene = simpleGameEngine('Battleship.png',84,84);
     drawScene(scene,user_ships);
+    % get the coordinate of the mouse
     [row,col] = getMouseInput(scene);
     [coordinate] = [row,col];
     direction = char(direction);
